@@ -16,12 +16,8 @@ public class MainActivity2 extends AppCompatActivity {
     private TextView textView;
     private TextView textView1;
     private TextView textView2;
+    private TextView textView3;
 
-    private String name;
-    private String arrivedat;
-    private String arriveplac;
-    private String depplac;
-    private String depdat;
 
     private Button button;
 
@@ -33,18 +29,18 @@ public class MainActivity2 extends AppCompatActivity {
         textView = findViewById(R.id.textView3);
         textView1 = findViewById(R.id.textView4);
         textView2 = findViewById(R.id.textView5);
+        textView3 = findViewById(R.id.textView6);
 
         Bundle bundle = getIntent().getExtras();
 
-        name = bundle.getString("name");
-        arrivedat = bundle.getString("arrivedat");
-        arriveplac = bundle.getString("arriveplac");
-        depplac = bundle.getString("depplac");
-        depdat = bundle.getString("depdat");
+        if (bundle != null) {
+            Ticket ticket = (Ticket) bundle.getSerializable("ticket");
+            textView.setText(ticket.getName());
+            textView1.setText("отправление " + ticket.getDepdate() + " " + ticket.getDepplace() +"\n");
+            textView2.setText("прибытие " + ticket.getArrivedate() + " " + ticket.getArriveplace() + "\n");
+            textView3.setText("стоимость" +" " + ticket.getCost() + " " + "рублей");
+        }
 
-        textView.setText(name);
-        textView1.setText("отправление " + depdat + " " + depplac +"\n");
-        textView2.setText("прибытие " + arrivedat + " " + arriveplac + "\n");
 
         button = findViewById(R.id.button2);
 

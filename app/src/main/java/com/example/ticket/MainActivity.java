@@ -13,16 +13,18 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button;
     private EditText nameEd;
-    private EditText arrivedate;
-    private EditText arriveplace;
-    private EditText depplace;
-    private EditText depdate;
+    private EditText arrivedated;
+    private EditText arriveplaced;
+    private EditText depplaced;
+    private EditText depdated;
+    private EditText costd;
 
     private String name;
-    private String arrivedat;
-    private String arriveplac;
-    private String depplac;
-    private String depdat;
+    private String arrivedate;
+    private String arriveplace;
+    private String depplace;
+    private String depdate;
+    private String cost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +32,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         nameEd = findViewById(R.id.name);
-        arrivedate = findViewById(R.id.arrivedate);
-        arriveplace = findViewById(R.id.arriveplace);
-        depplace = findViewById(R.id.depplace);
-        depdate = findViewById(R.id.depdate);
+        arrivedated = findViewById(R.id.arrivedate);
+        arriveplaced = findViewById(R.id.arriveplace);
+        depplaced = findViewById(R.id.depplace);
+        depdated = findViewById(R.id.depdate);
+        costd = findViewById(R.id.cost);
 
         button = findViewById(R.id.button);
 
@@ -41,42 +44,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                    name = nameEd.getText().toString();
-                    arrivedat = arrivedate.getText().toString();
-                    arriveplac = arriveplace.getText().toString();
-                    depdat = depdate.getText().toString();
-                    depplac = depplace.getText().toString();
+                    arrivedate = arrivedated.getText().toString();
+                    arriveplace = arriveplaced.getText().toString();
+                    depdate = depdated.getText().toString();
+                    depplace = depplaced.getText().toString();
+                    cost = costd.getText().toString();
 
-                 if(name.isEmpty() == true){
-                     Toast toast = Toast.makeText(getApplicationContext(), "введите ФИО", Toast.LENGTH_SHORT);
-                   toast.show();
-                }
-                else if(depplac.isEmpty() == true){
-                  Toast toast = Toast.makeText(getApplicationContext(), "введите место отправления", Toast.LENGTH_SHORT);
-                toast.show();
-                }
-                else if(depdat.isEmpty() == true){
-                  Toast toast = Toast.makeText(getApplicationContext(), "введите дату отправления", Toast.LENGTH_SHORT);
-                toast.show();
-                }
-                 else if(arriveplac.isEmpty() == true){
-                     Toast toast = Toast.makeText(getApplicationContext(), "введите место прибытия", Toast.LENGTH_SHORT);
-                     toast.show();
-                 }
-                 else if(arrivedat.isEmpty() == true){
-                     Toast toast = Toast.makeText(getApplicationContext(), "введите дату прибытия", Toast.LENGTH_SHORT);
-                     toast.show();
-                 }
-                else {
+                    Ticket ticket = new Ticket(name, arriveplace, depplace, arrivedate, depdate, cost);
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
-                    intent.putExtra("name", name);
-                    intent.putExtra("arrivedat", arrivedat);
-                    intent.putExtra("arriveplac", arriveplac);
-                    intent.putExtra("depplac", depplac);
-                    intent.putExtra("depdat", depdat);
-
+                    intent.putExtra("ticket",ticket);
                     startActivity(intent);
-                }
+
+
             }
         });
     }
